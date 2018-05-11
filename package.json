@@ -1,0 +1,30 @@
+{
+  "name": "v-switch-case",
+  "version": "0.1.0",
+  "description": "A Vue.js switch/case directive",
+  "main": "lib/index.js",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^22.4.1",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.2",
+    "rimraf": "^2.6.2"
+  },
+  "peerDependencies": {},
+  "scripts": {
+    "start": "babel-node src",
+    "build": "rimraf lib && babel src -d lib --ignore src/__tests__",
+    "test": "jest"
+  },
+  "homepage": "https://github.com/lmiller1990/v-switch-case",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lmiller1990/v-switch-case"
+  },
+  "keywords": ["vue", "vue.js", "v-switch", "switch"],
+  "author": "Lachlan Miller",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.5.16"
+  }
+}
