@@ -38,7 +38,7 @@ Node.js env (such a `.vue` components):
 </template>
 
 <script>
-import { vSwitch, vCase } from '../../src'
+import { vSwitch, vCase } from 'v-switch-case'
 
 export default {
   directives: {
