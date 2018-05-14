@@ -3,7 +3,7 @@ const _data = {
 }
 
 function setValues(data, binding) {
-  data.switchValue = binding.value
+  data[binding.expression] = binding.value
 }
 
 function containsCase(arr = [], cb) {
@@ -20,7 +20,7 @@ function processSwitch(el, binding, vnode, data) {
     if (node.data) {
       const caseDirective = containsCase(node.data.directives)
       if (caseDirective) {
-        if (caseDirective.value === data.switchValue) {
+        if (caseDirective.value === data[binding.expression]) {
           const initialDisplay = node.elm.getAttribute("data-initial-display")
           node.elm.style.display = initialDisplay !== "none" 
             ? initialDisplay 
