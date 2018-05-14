@@ -1,5 +1,21 @@
 <template>
   <div id="app">
+    <div v-switch="validateUrl" class="validateUrl">
+      <p v-case="'validating'">Checking Url...</p>
+      <p v-case="'validated'">Valid</p>
+      <p v-case="''">-</p>
+    </div>
+
+    <input type="radio" id="validating" value="validating" v-model="validateUrl">
+    <label for="validating">Validating</label><br>
+
+    <input type="radio" id="validated" value="validated" v-model="validateUrl">
+    <label for="validated">Validated</label><br>
+
+    <input type="radio" id="''" value="''" v-model="validateUrl">
+    <label for="''">Default</label>
+
+    <hr>
 
     <div v-switch="size">
       <h1 v-case="'large'">Large</h1>
@@ -72,6 +88,7 @@ export default {
 
   data() {
     return {
+      validateUrl: 'validating',
       size: 'medium'
     }
   }
