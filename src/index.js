@@ -16,11 +16,14 @@ function containsCase(arr = [], cb) {
 }
 
 function processSwitch(el, binding, vnode, data) {
+  const lastNode = vnode.children[vnode.children.length-1]
+  let matched = false
   for (let node of vnode.children) {
     if (node.data) {
       const caseDirective = containsCase(node.data.directives)
       if (caseDirective) {
         if (caseDirective.value === data[binding.expression]) {
+          matched = true
           const initialDisplay = node.elm.getAttribute("data-initial-display")
           node.elm.style.display = initialDisplay !== "none" 
             ? initialDisplay 
@@ -30,6 +33,10 @@ function processSwitch(el, binding, vnode, data) {
         }
       }
     }
+  }
+  if (!matched) {
+    console.log('no match')
+    // use v-default, hide all others
   }
 }
 
@@ -58,6 +65,8 @@ const vSwitch = {
 }
 
 const vCase = () => {}
+
+const vDefault = () => {}
 
 export { vSwitch, vCase }
 

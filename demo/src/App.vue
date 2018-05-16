@@ -3,7 +3,7 @@
     <div v-switch="validateUrl" class="validateUrl">
       <p v-case="'validating'">Checking Url...</p>
       <p v-case="'validated'">Valid</p>
-      <p v-case="''">-</p>
+      <p v-default="''">-</p>
     </div>
 
     <input type="radio" id="validating" value="validating" v-model="validateUrl">
@@ -77,13 +77,14 @@
 </template>
 
 <script>
-import { vSwitch, vCase } from '../../src'
+import { vSwitch, vCase, vDefault } from '../../src'
 export default {
   name: 'app',
 
   directives: {
     'switch': vSwitch,
-    'case': vCase
+    'case': vCase,
+    'default': vDefault
   },
 
   data() {
