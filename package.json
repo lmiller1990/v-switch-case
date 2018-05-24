@@ -30,6 +30,8 @@
   "author": "Lachlan Miller",
   "license": "MIT",
   "dependencies": {
-    "vue": "^2.5.16"
+    "@vue/test-utils": "^1.0.0-beta.16",
+    "vue": "^2.5.16",
+    "vue-template-compiler": "^2.5.16"
   }
 }

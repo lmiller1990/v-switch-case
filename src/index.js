@@ -15,10 +15,34 @@ function containsCase(arr = [], cb) {
   return false
 }
 
+function hideVDefaultNode(binding, vnode, data) {
+  const children = vnode.children
+  for (let node of children) {
+    if (node.data) { 
+      if (containsDefault(node.data.directives)) {
+        node.elm.style.display = "none"
+      }
+    }
+  }
+}
+
+function containsDefault(arr = [], cb) {
+  for (let a in arr) {
+    if (arr[a].name === "default")
+      return arr[a]
+  }
+
+  return false
+}
+
+export function getVDefaultNode(vnodes) {
+}
+
 function processSwitch(el, binding, vnode, data) {
   const lastNode = vnode.children[vnode.children.length-1]
   let matched = false
-  for (let node of vnode.children) {
+  const children = vnode.children
+  for (let node of children) {
     if (node.data) {
       const caseDirective = containsCase(node.data.directives)
       if (caseDirective) {
@@ -28,6 +52,7 @@ function processSwitch(el, binding, vnode, data) {
           node.elm.style.display = initialDisplay !== "none" 
             ? initialDisplay 
             : "block"
+          hideVDefaultNode(binding, vnode, data)
         } else {
           node.elm.style.display = "none"
         }
@@ -35,8 +60,7 @@ function processSwitch(el, binding, vnode, data) {
     }
   }
   if (!matched) {
-    console.log('no match')
-    // use v-default, hide all others
+    // no match
   }
 }
 
@@ -68,5 +92,5 @@ const vCase = () => {}
 
 const vDefault = () => {}
 
-export { vSwitch, vCase }
+export { vSwitch, vCase, vDefault }
 
