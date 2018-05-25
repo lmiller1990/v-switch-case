@@ -17,7 +17,7 @@
 
     <hr>
 
-    <!--<div v-switch="size">
+    <div v-switch="size">
       <h1 v-case="'large'">Large</h1>
       <h2 v-case="'medium'">Medium</h2>
       <h3 v-case="'small'">Small</h3>
@@ -32,7 +32,6 @@
 
     <input type="radio" id="large" value="large" v-model="size">
     <label for="large">Large</label>
-    -->
     <hr>
 
     <h4>Installation:</h4>
@@ -89,7 +88,7 @@ export default {
 
   data() {
     return {
-      validateUrl: null,
+      validateUrl: 'validating',
       size: 'medium'
     }
   }

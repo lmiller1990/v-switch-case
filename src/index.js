@@ -1,66 +1,70 @@
-const _data = {
-  switchValue: null
-}
+const _data = {}
 
 function setValues(data, binding) {
   data[binding.expression] = binding.value
 }
 
-function containsCase(arr = [], cb) {
+export function containsDirective(arr = [], directive) {
   for (let a in arr) {
-    if (arr[a].name === "case")
+    if (arr[a].name === directive)
       return arr[a]
   }
-
   return false
 }
 
-function hideVDefaultNode(binding, vnode, data) {
+const containsCase = 
+  (arr = []) => containsDirective(arr, "case")
+
+const containsDefault = 
+  (arr = []) => containsDirective(arr, "default")
+
+function toggleDefaultElement(binding, vnode, { show }) {
   const children = vnode.children
   for (let node of children) {
     if (node.data) { 
       if (containsDefault(node.data.directives)) {
-        node.elm.style.display = "none"
+        const display = show 
+        ? node.elm.getAttribute("data-initial-display")
+        : "none"
+        node.elm.style.display = display
       }
     }
   }
 }
 
-function containsDefault(arr = [], cb) {
-  for (let a in arr) {
-    if (arr[a].name === "default")
-      return arr[a]
-  }
-
-  return false
-}
-
-export function getVDefaultNode(vnodes) {
+function revealElementWithInitialDisplay(element) {
+  const initialDisplay = element.getAttribute("data-initial-display")
+  element.style.display = initialDisplay !== "none" 
+    ? initialDisplay 
+    : "block"
 }
 
 function processSwitch(el, binding, vnode, data) {
-  const lastNode = vnode.children[vnode.children.length-1]
   let matched = false
   const children = vnode.children
   for (let node of children) {
     if (node.data) {
-      const caseDirective = containsCase(node.data.directives)
+      const caseDirective = containsCase(node.data.directives, "case")
       if (caseDirective) {
         if (caseDirective.value === data[binding.expression]) {
+          revealElementWithInitialDisplay(node.elm)
+          toggleDefaultElement(binding, vnode, { show: false })
           matched = true
-          const initialDisplay = node.elm.getAttribute("data-initial-display")
-          node.elm.style.display = initialDisplay !== "none" 
-            ? initialDisplay 
-            : "block"
-          hideVDefaultNode(binding, vnode, data)
         } else {
           node.elm.style.display = "none"
         }
       }
     }
   }
+
   if (!matched) {
-    // no match
+    toggleDefaultElement(binding, vnode, { show: true })
+  }
+}
+
+function saveInitialDsplayToDataAttr(elements) {
+  for (let child of elements) {
+    child.setAttribute("data-initial-display", child.style.display)
   }
 }
 
@@ -70,9 +74,7 @@ const vSwitch = {
   },
 
   inserted(el, binding, vnode) {
-    for (let child of el.children) {
-      child.setAttribute("data-initial-display", child.style.display)
-    }
+    saveInitialDsplayToDataAttr(el.children)
     processSwitch(el, binding, vnode, _data)
   },
 
@@ -81,9 +83,6 @@ const vSwitch = {
   },
 
   componentUpdated(el, binding, vnode) {
-    for (let child of el.children) {
-      child.setAttribute("data-initial-display", child.style.display)
-    }
     processSwitch(el, binding, vnode, _data)
   }
 }
