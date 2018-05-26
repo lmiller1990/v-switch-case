@@ -1,6 +1,6 @@
 {
   "name": "v-switch-case",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "description": "A Vue.js switch/case directive",
   "main": "lib/index.js",
   "devDependencies": {
