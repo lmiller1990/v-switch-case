@@ -1,6 +1,6 @@
 ## `v-switch-case`
 
-A simple `v-switch` and `v-case` directive pair for Vue.
+A simple `v-switch`, `v-case` and `v-default` directive set for Vue.
 
 Live Demo: https://lmiller1990.github.io/v-switch-case/
 
@@ -9,6 +9,7 @@ Live Demo: https://lmiller1990.github.io/v-switch-case/
 <div v-switch="size">
   <h1 v-case="'large'">Large</h1>
   <h2 v-case="'small'">Medium</h2>
+  <h3 v-default>Default</h3>
 </div>
 ```
 
@@ -38,12 +39,13 @@ Node.js env (such a `.vue` components):
 </template>
 
 <script>
-import { vSwitch, vCase } from 'v-switch-case'
+import { vSwitch, vCase, vDefault } from 'v-switch-case'
 
 export default {
   directives: {
     'switch': vSwitch,
-    'case': vCase
+    'case': vCase,
+    'default': vDefault
   },
 
   data() {
