@@ -3,7 +3,7 @@
     <div v-switch="validateUrl" class="validateUrl">
       <p v-case="'validating'">Checking Url...</p>
       <p v-case="'validated'">Valid</p>
-      <p v-case="''">-</p>
+      <p v-default>Default</p>
     </div>
 
     <input type="radio" id="validating" value="validating" v-model="validateUrl">
@@ -32,7 +32,6 @@
 
     <input type="radio" id="large" value="large" v-model="size">
     <label for="large">Large</label>
-
     <hr>
 
     <h4>Installation:</h4>
@@ -51,16 +50,18 @@
           &lt;h1 v-case="'large'"&gt;Large Heading&lt;h1&gt;
           &lt;h2 v-case="'medium'"&gt;Medium Heading&lt;h2&gt;
           &lt;h4 v-case="'small'"&gt;Small Heading&lt;h3&gt;
+          &lt;h4 v-default&gt;Small Heading&lt;h3&gt;
         &lt;/div&gt;
 
         Vue:
         &lt;script&gt;
-          import { vSwitch, vCase } from 'v-switch-case'
+          import { vSwitch, vCase, vDefault } from 'v-switch-case'
 
           export default {
             directives: { 
               'switch': vSwitch,
-              'case': vCase
+              'case': vCase,
+              'default': vDefault
             },
 
             data() {
@@ -77,13 +78,14 @@
 </template>
 
 <script>
-import { vSwitch, vCase } from '../../src'
+import { vSwitch, vCase, vDefault } from '../../src'
 export default {
   name: 'app',
 
   directives: {
     'switch': vSwitch,
-    'case': vCase
+    'case': vCase,
+    'default': vDefault
   },
 
   data() {
