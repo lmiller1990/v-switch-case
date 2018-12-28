@@ -93,3 +93,11 @@ const vDefault = () => {}
 
 export { vSwitch, vCase, vDefault }
 
+export default {
+  install(Vue, options) {
+    Vue.directive('switch', vSwitch)
+    Vue.directive('case', vCase)
+    Vue.directive('default', vDefault)
+  }
+}
+

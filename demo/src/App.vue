@@ -41,7 +41,39 @@
         npm install v-switch-case
       </code>
     </pre>
-    <h4>Use:</h4>
+
+    <h4>Use (global):</h4>
+    <pre>
+      <code>
+
+        HTML:
+        &lt;div v-switch="size"&gt;
+          &lt;h1 v-case="'large'"&gt;Large Heading&lt;h1&gt;
+          &lt;h2 v-case="'medium'"&gt;Medium Heading&lt;h2&gt;
+          &lt;h4 v-case="'small'"&gt;Small Heading&lt;h3&gt;
+          &lt;h4 v-default&gt;Small Heading&lt;h3&gt;
+        &lt;/div&gt;
+
+        Vue:
+        &lt;script&gt;
+          import Vue from 'vue'
+          import VSwitch from 'v-switch-case'
+
+          Vue.use(VSwitch)
+
+          export default {
+            data() {
+              return {
+                size: 'medium'
+              }
+            }
+          }
+        &lt;/script&gt;
+
+      </code>
+    </pre>
+
+    <h4>Use (individual directives):</h4>
     <pre>
       <code>
 
@@ -58,7 +90,7 @@
           import { vSwitch, vCase, vDefault } from 'v-switch-case'
 
           export default {
-            directives: { 
+            directives: {
               'switch': vSwitch,
               'case': vCase,
               'default': vDefault
@@ -74,19 +106,17 @@
 
       </code>
     </pre>
+
   </div>
 </template>
 
 <script>
-import { vSwitch, vCase, vDefault } from '../../src'
+import Vue from 'vue'
+import VSwitch from '../../dist/v-switch'
+
+Vue.use(VSwitch)
 export default {
   name: 'app',
-
-  directives: {
-    'switch': vSwitch,
-    'case': vCase,
-    'default': vDefault
-  },
 
   data() {
     return {
