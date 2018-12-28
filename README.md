@@ -25,9 +25,15 @@ yarn:
 yarn add v-switch-case
 ```
 
+Or using a script tag:
+
+```html
+<script src="https://unpkg.com/v-switch-case@1.0.2/dist/v-switch.min.js"></script>
+```
+
 ### Use
 
-Node.js env (such a `.vue` components):
+Node.js env (using webpack for example):
 
 ```html
 <template>
@@ -39,15 +45,12 @@ Node.js env (such a `.vue` components):
 </template>
 
 <script>
-import { vSwitch, vCase, vDefault } from 'v-switch-case'
+import Vue from 'vue'
+import VSwitch from 'v-switch-case'
+
+Vue.use(VSwitch)
 
 export default {
-  directives: {
-    'switch': vSwitch,
-    'case': vCase,
-    'default': vDefault
-  },
-
   data() {
     return {
       size: 'medium'
@@ -57,13 +60,16 @@ export default {
 </script>
 ```
 
-### Todo
+From a CDN:
 
-- [] allow installatiion with `Vue.directive('v-switch')`
-- [] Browser env/cdn link
-- [] Add tests
-- [] Add `v-default` directive to match JavaScript `switch` API
+```html
+<script src="https://unpkg.com/v-switch-case@1.0.2/dist/v-switch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.js"></script>
 
+<script>
+Vue.use(VSwitch)
+</script>
+```
 
 ### Links
 
