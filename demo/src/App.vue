@@ -58,7 +58,7 @@
           import { vSwitch, vCase, vDefault } from 'v-switch-case'
 
           export default {
-            directives: { 
+            directives: {
               'switch': vSwitch,
               'case': vCase,
               'default': vDefault
@@ -78,7 +78,8 @@
 </template>
 
 <script>
-import { vSwitch, vCase, vDefault } from '../../src'
+// import { vSwitch, vCase, vDefault } from '../../src'
+import { vSwitch, vCase, vDefault } from '../../dist/v-switch'
 export default {
   name: 'app',
 
