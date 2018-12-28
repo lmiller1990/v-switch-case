@@ -2,7 +2,7 @@
   "name": "v-switch-case",
   "version": "1.0.1",
   "description": "A Vue.js switch/case directive",
-  "main": "lib/index.js",
+  "main": "dist/v-switch.js",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "babel-cli": "^6.26.0",
@@ -18,7 +18,7 @@
   "peerDependencies": {},
   "scripts": {
     "start": "babel-node src",
-    "build": "rimraf lib && babel src -d lib --ignore src/__tests__",
+    "build": "rimraf dist && npx webpack --mode production",
     "test": "jest"
   },
   "homepage": "https://github.com/lmiller1990/v-switch-case",

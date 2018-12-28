@@ -1,12 +1,10 @@
 const webpack = require('webpack')
+const merge = require('webpack-merge')
 const path = require('path')
 
-module.exports = {
-  entry: path.resolve(__dirname, 'src/index.js'),
+const commonConfig = {
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'v-switch.js',
-    libraryTarget: 'commonjs2'
   },
   module: {
     rules: [
@@ -14,7 +12,10 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: __dirname,
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        options: {
+          babelrc: false
+        }
       }
     ]
   },
@@ -22,3 +23,25 @@ module.exports = {
     minimize: true
   }
 }
+
+
+module.exports = [
+  // browser
+  merge(commonConfig, {
+    entry: path.resolve(__dirname, 'plugin.js'),
+    output: {
+      filename: 'v-switch.min.js',
+      libraryTarget: 'window',
+      library: 'VSwitch'
+    }
+  }),
+
+  // node
+  merge(commonConfig, {
+    entry: path.resolve(__dirname, 'src/index.js'),
+    output: {
+      libraryTarget: 'commonjs2',
+      filename: 'v-switch.js'
+    }
+  })
+]

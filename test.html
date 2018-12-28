@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<script src="dist/v-switch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.js"></script>
+
+<script>
+Vue.use(VSwitch)
+
+document.addEventListener('DOMContentLoaded', () => {
+  new Vue({
+    el: '#app',
+
+    data() {
+      return {
+        validateUrl: 'validating',
+      }
+    }
+  })
+})
+</script>
+
+<body>
+  <div id="app">
+    <input type="radio" id="validating" value="validating" v-model="validateUrl">
+    <label for="validating">Validating</label><br>
+
+    <input type="radio" id="validated" value="validated" v-model="validateUrl">
+    <label for="validated">Validated</label><br>
+
+    <input type="radio" id="''" value="''" v-model="validateUrl">
+    <label for="''">Default</label>
+
+    <div v-switch="validateUrl" class="validateUrl">
+      <p v-case="'validating'">Checking Url...</p>
+      <p v-case="'validated'">Valid</p>
+      <p v-default>Default</p>
+    </div>
+  </div>
+</body>
+</html>
+
