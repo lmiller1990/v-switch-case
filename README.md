@@ -1,6 +1,8 @@
 ## `v-switch-case`
 
-A simple `v-switch`, `v-case` and `v-default` directive set for Vue.
+A simple `v-switch`, `v-case` and `v-default` directive set for Vue.js 2.
+
+NOTE: If you want something similar for Vue.js 3, check out [`v-switch`](https://github.com/lmiller1990/v-switch).
 
 Live Demo: https://lmiller1990.github.io/v-switch-case/
 
